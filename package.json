@@ -7,11 +7,22 @@
   "author": "Martin Lekvall <lekvall@gmail.com>",
   "license": "The Unlicense",
   "scripts": {
+    "test": "eslint --ext .js .",
     "start": "node server.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
