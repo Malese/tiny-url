@@ -1,6 +1,10 @@
 'use strict';
 
+const session = require('../utils/session');
+
 const page = (req, res, next) => {
+  const sessionUuid = session.get(req, res);
+
   res.send(`<!DOCTYPE html>
 <html>
   <head>
@@ -11,6 +15,7 @@ const page = (req, res, next) => {
   </head>
   <body>
     <h1>tiny-url express</h1>
+    <p>${sessionUuid}</p>
   </body>
 </html>`);
 };
