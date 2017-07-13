@@ -1,7 +1,7 @@
 {
   "name": "tiny-url",
   "version": "0.0.0",
-  "description": "Url-shortener service running in the browser",
+  "description": "Url-shortener",
   "main": "index.html",
   "repository": "git@github.com:Malese/tiny-url.git",
   "author": "Martin Lekvall <lekvall@gmail.com>",
@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "shortlink": "^1.1.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
