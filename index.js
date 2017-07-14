@@ -7,8 +7,19 @@ const app = express();
 
 const cookieParser = require('cookie-parser');
 
+const store = require('./utils/store');
 const pageHandler = require('./views/page');
 const resolveHandler = require('./views/resolve');
+
+const serverUrl = 'http://' + (process.env.HOSTNAME || '127.0.0.1') + ':' + (process.env.PORT || 3000);
+
+/**
+ * Get store initialized
+ */
+store.init({
+  serverUrl: serverUrl,
+  alphabet: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+});
 
 /**
  * Use a ./.env file if needed

@@ -11,16 +11,6 @@ const page = (req, res, next) => {
   let newLinkNode = '';
 
   /**
-   * Get store initialized
-   */
-  const serverUrl = req.protocol + '://' + req.get('host');
-
-  store.init({
-    serverUrl: serverUrl,
-    alphabet: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  });
-
-  /**
    * New incoming link
    */
   if (req.query && req.query.url) {
