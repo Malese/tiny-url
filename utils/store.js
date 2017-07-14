@@ -127,6 +127,13 @@ const set = (link, user) => {
   };
 };
 
+/**
+ * Add link-ref to user-object. Truncate it
+ * if needed (FIFO), and if so, remove from urls.
+ * @param {string} random - 10 digit random string
+ * @param {string} user - session-uuid
+ * @returns {void} or probably undefined by engine
+ */
 const updateUser = (random, user) => {
   users[user] = users[user] || [];
   users[user].push(random);
