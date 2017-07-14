@@ -2,47 +2,49 @@
 
 const store = require('../utils/store');
 
-const user = '910fe088-e396-41bd-9713-315222f4466b';
-const serverUrl = 'http://127.0.0.1:3000';
+describe('the store', () => {
+  const user = '910fe088-e396-41bd-9713-315222f4466b';
+  const serverUrl = 'http://127.0.0.1:3000';
 
-beforeAll(() => {
-  store.init({
-    serverUrl: serverUrl,
-    alphabet: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  });
-});
-
-test('Storing new link should return correct linkObject', () => {
-  const linkObject = store.set('https://test1.com', user) || {};
-  const key = linkObject.short.slice( linkObject.short.lastIndexOf('/') + 1 );
-
-  expect(linkObject)
-    .toEqual({
-      url: 'https://test1.com',
-      short: serverUrl + '/' + key
+  beforeAll(() => {
+    store.init({
+      serverUrl: serverUrl,
+      alphabet: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     });
-});
+  });
 
-test('Same user storing same link twice should return equal linkObjects', () => {
-  const linkObject1 = store.set('https://test2.com', user) || {};
-  const linkObject2 = store.set('https://test2.com', user) || {};
+  test('should return correct linkObject when storing new link', () => {
+    const linkObject = store.set('https://test1.com', user) || {};
+    const key = linkObject.short.slice( linkObject.short.lastIndexOf('/') + 1 );
 
-  expect(linkObject1)
-    .toEqual(linkObject2);
-});
+    expect(linkObject)
+      .toEqual({
+        url: 'https://test1.com',
+        short: serverUrl + '/' + key
+      });
+  });
 
-test('After storing new link, resolve should return it using the key', () => {
-  const linkObject = store.set('https://test3.com', user) || {};
-  const key = linkObject.short.slice( linkObject.short.lastIndexOf('/') + 1 );
+  test('should return equal linkObjects when same user stores same link twice', () => {
+    const linkObject1 = store.set('https://test2.com', user) || {};
+    const linkObject2 = store.set('https://test2.com', user) || {};
 
-  expect(store.resolve(key))
-    .toBe('https://test3.com');
-});
+    expect(linkObject1)
+      .toEqual(linkObject2);
+  });
 
-test('Empty array should be returned for new/unknown users', () => {
-  const user = '7e610e3e-928a-4a47-8bba-f087acdbc611';
-  const linkObject = store.get(user) || {};
+  test('resolve method should return correct link using generated key after storing new link,', () => {
+    const linkObject = store.set('https://test3.com', user) || {};
+    const key = linkObject.short.slice( linkObject.short.lastIndexOf('/') + 1 );
 
-  expect(linkObject)
-    .toEqual([]);
+    expect(store.resolve(key))
+      .toBe('https://test3.com');
+  });
+
+  test('get method should return empty array for new/unknown users', () => {
+    const user = '7e610e3e-928a-4a47-8bba-f087acdbc611';
+    const linkObject = store.get(user) || {};
+
+    expect(linkObject)
+      .toEqual([]);
+  });
 });
