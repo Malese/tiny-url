@@ -8,7 +8,11 @@
   "license": "The Unlicense",
   "scripts": {
     "test": "eslint --ext .js .",
+    "test-unit": "jest",
     "start": "node server.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
@@ -25,6 +29,7 @@
     "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4"
   }
 }
