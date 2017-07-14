@@ -3,9 +3,12 @@
 const url = require('url');
 const shortlink = require('shortlink');
 
-// const users = {};
-// const urls = {};
+let serverURL;
 
+// const users = {};
+/*
+ * example content
+ */
 const users = { '910fe088-e396-41bd-9713-315222f4466b':
    [ '6741443617',
      '7072623756',
@@ -14,29 +17,17 @@ const users = { '910fe088-e396-41bd-9713-315222f4466b':
      '1808339703' ]
 };
 
+// const urls = {};
+/*
+ * example content
+ */
 const urls = {
-  '7meprz': 'https://2.se',
-  '7IE0wI': 'https://3.se',
-  '23tX9n': 'https://4.se',
-  '6eDJs1': 'https://5.se',
-  '1YnBLp': 'https://6.se'
+  '7meprz': 'https://www.2.se',
+  '7IE0wI': 'https://www.3.se',
+  '23tX9n': 'https://www.4.se',
+  '6eDJs1': 'https://www.5.se',
+  '1YnBLp': 'https://www.6.se'
 };
-
-// const users = {
-//   '910fe088-e396-41bd-9713-315222f4466b': [
-//     8540230845,
-//     4798743782,
-//     8043754890
-//   ]
-// };
-//
-// const urls = {
-//   '9jXWaN': 'https://www.hd.se/2017-07-12/gigantiskt-isberg-har-brutit-sig-loss',
-//   '5eL2tg': 'https://expressjs.com',
-//   '8MmM66': ''
-// };
-
-let serverURL;
 
 /**
  * Sets current server-url and desired alphabet
@@ -79,7 +70,7 @@ const get = (user) => {
     const urlTarget = urls[key] || '';
 
     return {
-      url: urlTarget, // all .format opts are true as default
+      url: urlTarget,
       short: short
     };
   }).filter(item => item && item.url && item.short);
@@ -98,7 +89,6 @@ const set = (link, user) => {
   }
 
   const existing = get(user).filter(item => {
-    // TODO use format? already stored with format?
     return item.url === link;
   });
 
