@@ -14,8 +14,10 @@ const page = (req, res, next) => {
    * New incoming link
    */
   if (req.query && req.query.url) {
+    const queryUrl = req.query.url.trim();
+
     // check is validity link
-    const isNotUrl = validate({website: req.query.url}, {
+    const isNotUrl = validate({website: queryUrl}, {
       website: {
         url: {
           allowLocal: true
@@ -24,12 +26,12 @@ const page = (req, res, next) => {
     });
 
     if (!isNotUrl) { // undefined if green-lighted
-      newLink = store.set(req.query.url, sessionUuid);
+      newLink = store.set(queryUrl, sessionUuid);
       if (newLink) {
         newLinkNode = `<div><p>Here is your new short-link</p><a href="${newLink.short}">${newLink.short}</a></div>`;
       }
     } else {
-      newLinkNode = `<div><p>Opps, was that the correct link</p>${ESAPI.encoder().encodeForHTML(req.query.url)}</div>`;
+      newLinkNode = `<div><p>Opps, was that the correct link</p>${ESAPI.encoder().encodeForHTML(queryUrl)}</div>`;
     }
   }
 
