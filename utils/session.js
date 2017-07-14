@@ -22,8 +22,6 @@ const get = (req, res) => {
 };
 
 const setCookie = (req, res, uuid) => {
-  console.log(req.get('host'));
-
   // maxAge = one year from now.
   const maxAge = 1000 * 60 * 60 * 24 * 365;
 

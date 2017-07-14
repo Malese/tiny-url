@@ -1,7 +1,7 @@
 'use strict';
 
 const store = require('../utils/store');
-// const session = require('../utils/session');
+
 const user = '910fe088-e396-41bd-9713-315222f4466b';
 const serverUrl = 'http://127.0.0.1:3000';
 
