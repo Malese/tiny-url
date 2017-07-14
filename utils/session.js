@@ -16,14 +16,14 @@ const get = (req, res) => {
     uuid = uuidv4();
   }
 
-  set(res, uuid);
+  setCookie(req, res, uuid);
 
   return uuid;
 };
 
-// TODO: update cookie expire-time when used
+const setCookie = (req, res, uuid) => {
+  console.log(req.get('host'));
 
-const set = (res, uuid) => {
   // maxAge = one year from now.
   const maxAge = 1000 * 60 * 60 * 24 * 365;
 
@@ -33,9 +33,11 @@ const set = (res, uuid) => {
 
   if (res.cookie) {
     res.cookie(sessionIdent, uuid, {
+      domain: req.get('host'),
       httpOnly: true,
       expires: expires,
-      maxAge: maxAge
+      maxAge: maxAge,
+      sameSite: 'strict'
     });
   }
 };
