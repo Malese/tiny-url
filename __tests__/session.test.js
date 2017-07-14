@@ -3,6 +3,12 @@
 const session = require('../utils/session');
 
 describe('the session', () => {
+  beforeAll(() => {
+    session.init({
+      name: 'tiny-ident'
+    });
+  });
+
   test('Should return new valid uuid v4 if non-existent as cookie', () => {
     const sessionUuid = session.get({}, {});
 

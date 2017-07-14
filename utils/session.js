@@ -4,7 +4,13 @@ const uuidv4 = require('uuid/v4');
 
 // TODO init that sets cookie name?
 
-const sessionIdent = 'tiny-ident';
+let hostname = '127.0.0.1';
+let sessionIdent = 'ident';
+
+const init = (config) => {
+  hostname = config.hostname || hostname;
+  sessionIdent = config.name || sessionIdent;
+};
 
 const get = (req, res) => {
   let uuid;
@@ -31,15 +37,17 @@ const setCookie = (req, res, uuid) => {
 
   if (res.cookie) {
     res.cookie(sessionIdent, uuid, {
-      domain: req.get('host'),
+      domain: '127.0.0.1',
       httpOnly: true,
+      sameSite: 'strict',
+      secure: false,
       expires: expires,
-      maxAge: maxAge,
-      sameSite: 'strict'
+      maxAge: maxAge
     });
   }
 };
 
 module.exports = {
+  init,
   get
 };
