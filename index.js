@@ -43,7 +43,7 @@ app.use(express.static('static'));
  * Fallback/404 route
  */
 app.get('*', (req, res, next) => {
-  res.send(404, 'Ops, not found (404)');
+  res.status(404).send('Ops, not found (404)');
 });
 
 const server = app.listen(app.get('port'), app.get('hostname'), () => {
