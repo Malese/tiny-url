@@ -1,13 +1,14 @@
 {
   "name": "tiny-url",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Url-shortener",
-  "main": "index.html",
+  "main": "index.js",
   "repository": "git@github.com:Malese/tiny-url.git",
   "author": "Martin Lekvall <lekvall@gmail.com>",
   "license": "The Unlicense",
   "scripts": {
-    "test": "eslint --ext .js .",
+    "test": "npm run test-lint && npm run test-unit",
+    "test-lint": "eslint --ext .js .",
     "test-unit": "jest",
     "start": "node server.js"
   },
@@ -18,8 +19,10 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "node-esapi": "^0.0.1",
     "shortlink": "^1.1.0",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "validate.js": "^0.11.1"
   },
   "devDependencies": {
     "eslint": "^4.2.0",

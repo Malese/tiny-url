@@ -2,6 +2,8 @@
 
 const session = require('../utils/session');
 const store = require('../utils/store');
+const validate = require('validate.js');
+const ESAPI = require('node-esapi');
 
 const page = (req, res, next) => {
   const sessionUuid = session.get(req, res);
@@ -22,10 +24,22 @@ const page = (req, res, next) => {
    * New incoming link
    */
   if (req.query && req.query.url) {
-    // TODO Sanitize
-    newLink = store.set(req.query.url, sessionUuid);
-    if (newLink) {
-      newLinkNode = `<div><p>Her is your new short-link</p><a href="${newLink.short}">${newLink.short}</a></div>`;
+    // check is validity link
+    const isNotUrl = validate({website: req.query.url}, {
+      website: {
+        url: {
+          allowLocal: true
+        }
+      }
+    });
+
+    if (!isNotUrl) { // undefined if green-lighted
+      newLink = store.set(req.query.url, sessionUuid);
+      if (newLink) {
+        newLinkNode = `<div><p>Here is your new short-link</p><a href="${newLink.short}">${newLink.short}</a></div>`;
+      }
+    } else {
+      newLinkNode = `<div><p>Opps, was that the correct link</p>${ESAPI.encoder().encodeForHTML(req.query.url)}</div>`;
     }
   }
 
@@ -34,9 +48,10 @@ const page = (req, res, next) => {
    */
   const list = store.get(sessionUuid);
   const listTable = list.map(item => {
-    return '<p>' + item.url + ' ' + item.short + '</p>';
+    return '<p><a href="' + ESAPI.encoder().encodeForHTML(item.url) + '">' + ESAPI.encoder().encodeForHTML(item.url) + '</a> ' + item.short + '</p>';
   }).join('\n');
 
+  // TODO remove sessionUuid
   res.send(`<!DOCTYPE html>
 <html>
   <head>
@@ -50,7 +65,7 @@ const page = (req, res, next) => {
     ${newLinkNode}
     <form action="/">
       <!-- TODO remove link -->
-      <input type="text" placeholder="http://url.to/shorten" name="url" value="https://www.google.se/maps" />
+      <input type="text" placeholder="http://url.to/shorten" name="url" />
       <button type="submit">shrink!</button>
     </form>
     <p>${listTable}</p>
