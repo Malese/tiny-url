@@ -5,18 +5,31 @@ const uuidv4 = require('uuid/v4');
 // TODO init that sets cookie name?
 
 let hostname = '127.0.0.1';
-let sessionIdent = 'ident';
+let name = 'ident';
 
+/**
+ * Sets current hostname and desired cookie-name
+ * @param {object} config
+ * @param {string} config.hostname - express server hostname.
+ * @param {string} config.name - desired cookie-name
+ * @returns {void} or probably undefined by engine
+ */
 const init = (config) => {
   hostname = config.hostname || hostname;
-  sessionIdent = config.name || sessionIdent;
+  name = config.name || name;
 };
 
+/**
+ * Get unique user identifier
+ * @param {object} req - express server request-object.
+ * @param {object} res - express server response-object.
+ * @returns {string} uuid v4
+ */
 const get = (req, res) => {
   let uuid;
 
-  if ((req.cookies || {})[sessionIdent]) {
-    uuid = req.cookies[sessionIdent];
+  if ((req.cookies || {})[name]) {
+    uuid = req.cookies[name];
   } else {
     // generate unique session-id
     uuid = uuidv4();
@@ -27,6 +40,13 @@ const get = (req, res) => {
   return uuid;
 };
 
+/**
+ * Set user identifier cookie
+ * @param {object} req - express server request-object.
+ * @param {object} res - express server response-object.
+ * @param {string} uuid - uuid.
+ * @returns {void} or probably undefined by engine
+ */
 const setCookie = (req, res, uuid) => {
   // maxAge = one year from now.
   const maxAge = 1000 * 60 * 60 * 24 * 365;
@@ -36,8 +56,8 @@ const setCookie = (req, res, uuid) => {
   expires.setFullYear(expires.getFullYear() + 1);
 
   if (res.cookie) {
-    res.cookie(sessionIdent, uuid, {
-      domain: '127.0.0.1',
+    res.cookie(name, uuid, {
+      domain: hostname,
       httpOnly: true,
       sameSite: 'strict',
       secure: false,
