@@ -3,19 +3,38 @@
 const url = require('url');
 const shortlink = require('shortlink');
 
-const users = {
-  '910fe088-e396-41bd-9713-315222f4466b': [
-    8540230845,
-    4798743782,
-    8043754890
-  ]
+// const users = {};
+// const urls = {};
+
+const users = { '910fe088-e396-41bd-9713-315222f4466b':
+   [ '6741443617',
+     '7072623756',
+     '1883733561',
+     '5713135205',
+     '1808339703' ]
 };
 
 const urls = {
-  '9jXWaN': 'https://www.hd.se/2017-07-12/gigantiskt-isberg-har-brutit-sig-loss',
-  '5eL2tg': 'https://expressjs.com',
-  '8MmM66': ''
+  '7meprz': 'https://2.se',
+  '7IE0wI': 'https://3.se',
+  '23tX9n': 'https://4.se',
+  '6eDJs1': 'https://5.se',
+  '1YnBLp': 'https://6.se'
 };
+
+// const users = {
+//   '910fe088-e396-41bd-9713-315222f4466b': [
+//     8540230845,
+//     4798743782,
+//     8043754890
+//   ]
+// };
+//
+// const urls = {
+//   '9jXWaN': 'https://www.hd.se/2017-07-12/gigantiskt-isberg-har-brutit-sig-loss',
+//   '5eL2tg': 'https://expressjs.com',
+//   '8MmM66': ''
+// };
 
 let serverURL;
 
@@ -60,7 +79,7 @@ const get = (user) => {
     const urlTarget = urls[key] || '';
 
     return {
-      url: url.format(urlTarget), // all .format opts are true as default
+      url: urlTarget, // all .format opts are true as default
       short: short
     };
   }).filter(item => item && item.url && item.short);
@@ -80,7 +99,7 @@ const set = (link, user) => {
 
   const existing = get(user).filter(item => {
     // TODO use format? already stored with format?
-    return item.url === url.format(link);
+    return item.url === link;
   });
 
   // User has link already?
@@ -100,23 +119,27 @@ const set = (link, user) => {
 
   urls[key] = link;
 
-  users[user].push(random);
+  updateUser(random, user);
 
-  // USE URL. ?
   return {
     url: link,
     short: url.resolve(serverURL, key)
   };
 };
 
-// const update = () => {
-//   handle users (fifo)
-//   clean urls
-// };
+const updateUser = (random, user) => {
+  users[user] = users[user] || [];
+  users[user].push(random);
+
+  if (users[user].length > 10) {
+    const id = users[user].shift();
+    delete urls[shortlink.encode(id)];
+  }
+};
 
 module.exports = {
   init,
-  resolve,
   set,
-  get
+  get,
+  resolve
 };

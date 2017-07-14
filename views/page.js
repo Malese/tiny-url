@@ -22,6 +22,7 @@ const page = (req, res, next) => {
    * New incoming link
    */
   if (req.query && req.query.url) {
+    // TODO Sanitize
     newLink = store.set(req.query.url, sessionUuid);
     if (newLink) {
       newLinkNode = `<div><p>Her is your new short-link</p><a href="${newLink.short}">${newLink.short}</a></div>`;
