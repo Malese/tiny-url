@@ -1,7 +1,5 @@
 'use strict';
 
-// const url = require('url');
-
 const store = require('../utils/store');
 
 const page = (req, res, next) => {

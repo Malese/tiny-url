@@ -39,11 +39,10 @@ const page = (req, res, next) => {
    * Lists current user´s short-url´s
    */
   const list = store.get(sessionUuid);
-  const listTable = list.map(item => {
-    return '<p><a href="' + ESAPI.encoder().encodeForHTML(item.url) + '">' + ESAPI.encoder().encodeForHTML(item.url) + '</a> ' + item.short + '</p>';
+  const listTable = list.reverse().map(item => {
+    return '<li><a href="' + ESAPI.encoder().encodeForHTML(item.url) + '">' + ESAPI.encoder().encodeForHTML(item.url) + '</a> ' + item.short + '</li>';
   }).join('\n');
 
-  // TODO remove sessionUuid
   res.send(`<!DOCTYPE html>
 <html>
   <head>
@@ -52,15 +51,22 @@ const page = (req, res, next) => {
     <link rel="stylesheet" href="/css/styles.css">
     <title>Tiny URL</title>
   </head>
-  <body>
-    <p>${sessionUuid}</p>
-    ${newLinkNode}
-    <form action="/">
-      <!-- TODO remove link -->
-      <input type="text" placeholder="http://url.to/shorten" name="url" />
-      <button type="submit">shrink!</button>
-    </form>
-    <p>${listTable}</p>
+  <body class="root">
+    <header class="panel header">
+      <h1>Short-url</h1>
+      <p>Shrink here <a href="https://www.2.se">https://www.2.se</a></p>
+    </header>
+    <section class="panel panel--light shrink">
+      ${newLinkNode}
+      <form class="form--shrink" action="/">
+        <!-- TODO remove link -->
+        <input class="input--shrink" type="text" placeholder="http://url.to/shorten" name="url" />
+        <button class="button--shrink" type="submit">shrink !</button>
+      </form>
+    </section>
+    <div class="panel list">
+      <ul>${listTable}</ul>
+    </div>
   </body>
 </html>`);
 };
