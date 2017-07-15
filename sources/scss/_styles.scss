@@ -1,0 +1,36 @@
+$color-white: #e0e0e0;
+$color-accent-light: #2197de;
+$color-accent-dark: #041c2b;
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+.root {
+  // color: #202020;
+  color: $color-white;
+  background-color: $color-accent-dark;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+}
+
+.panel--light {
+  background-color: $color-accent-light;
+}
+
+.header {}
+
+.shrink {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.list {
+  flex-direction: column;
+  align-items: center;
+}

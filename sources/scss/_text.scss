@@ -1,0 +1,56 @@
+/** Webfont */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+
+html {
+  font-size: 62.5%;
+}
+
+.root {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+/** Links */
+a:link {
+  text-decoration: none;
+  color: $color-accent-light;
+}
+
+a:visited {
+  color: $color-accent-light;
+}
+
+a:hover {
+  color: $color-accent-light;
+}
+
+a:active {
+  color: $color-accent-light;
+}
+
+.panel--light a:link {
+  text-decoration: none;
+  color: $color-accent-dark;
+}
+
+.panel--light a:visited {
+  color: $color-accent-dark;
+}
+
+.panel--light a:hover {
+  color: $color-accent-dark;
+}
+
+.panel--light a:active {
+  color: $color-accent-dark;
+}
+
+.word--tight {
+  word-spacing: 0.2em;
+}
