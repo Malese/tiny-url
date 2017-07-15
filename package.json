@@ -10,14 +10,18 @@
     "test": "concurrently -r 'eslint --ext .js .' 'jest'",
     "test-lint": "eslint --ext .js .",
     "test-unit": "jest",
-    "build-css": "node-sass --output-style compressed sources/scss/index.scss static/css/styles.css",
-    "watch": "nodemon --watch sources -e scss -x \"npm run --silent build-css\"",
-    "start": "concurrently -r 'npm run build-css' 'node .'"
+    "build-js": "browserify sources/js/index.js -o static/scripts.js",
+    "watch-js": "nodemon --watch sources/js -e js -x \"npm run --silent build-js\"",
+    "build-css": "node-sass --output-style compressed sources/scss/index.scss static/styles.css",
+    "watch-css": "nodemon --watch sources/scss -e scss -x \"npm run --silent build-css\"",
+    "watch": "concurrently -r 'npm run watch-css' 'npm run watch-js'",
+    "start": "concurrently -r 'npm run build-css' 'npm run build-js' 'node .'"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "dependencies": {
+    "clipboard": "^1.7.1",
     "concurrently": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
@@ -28,6 +32,7 @@
     "validate.js": "^0.11.1"
   },
   "devDependencies": {
+    "browserify": "^14.4.0",
     "eslint": "^4.2.0",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.2.1",
