@@ -27,30 +27,38 @@ a:visited {
 }
 
 a:hover {
-  color: $color-accent-light;
+  color: lighten($color-accent-light, 8%);
 }
 
 a:active {
-  color: $color-accent-light;
+  color: lighten($color-accent-light, 8%);
 }
 
-.panel--light a:link {
+.area-light a:link {
   text-decoration: none;
-  color: $color-accent-dark;
+  color: darken($color-accent-light, 5%);
 }
 
-.panel--light a:visited {
-  color: $color-accent-dark;
+.area-light a:visited {
+  color: darken($color-accent-light, 5%);
 }
 
-.panel--light a:hover {
-  color: $color-accent-dark;
+.area-light a:hover {
+  color: darken($color-accent-light, 13%);
 }
 
-.panel--light a:active {
-  color: $color-accent-dark;
+.area-light a:active {
+  color: darken($color-accent-light, 13%);
 }
 
 .word--tight {
   word-spacing: 0.2em;
+}
+
+.text-hidden {
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  text-shadow: none;
+  color: rgba(0, 0, 0, 0);
 }

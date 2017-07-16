@@ -1,0 +1,46 @@
+.list {
+  width: 90%;
+  max-width: 70rem;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+  margin: 1rem 0;
+  padding: 0;
+  background-color: $color-white;
+  border-radius: 2px;
+}
+
+.list-url {
+  flex: 1;
+}
+
+.list-url__short,
+.list-url__long {
+  display: inline-block;
+  overflow: hidden;
+  width: 98%;
+  padding-left: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.list-url__short {
+  margin-top: 0.5rem;
+  margin-bottom: -0.2rem;
+  line-height: 1.4;
+}
+
+.list-url__long {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.area-light .list-url__long:link,
+.area-light .list-url__long:visited {
+  color: $color-accent-dark;
+}
