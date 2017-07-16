@@ -14,8 +14,9 @@
     "watch-js": "nodemon --watch sources/js -e js -x \"npm run --silent build-js\"",
     "build-css": "node-sass --output-style compressed sources/scss/index.scss static/styles.css",
     "watch-css": "nodemon --watch sources/scss -e scss -x \"npm run --silent build-css\"",
+    "build": "concurrently -r 'npm run build-js' 'npm run build-css'",
     "watch": "concurrently -r 'npm run watch-css' 'npm run watch-js'",
-    "start": "concurrently -r 'npm run build-css' 'npm run build-js' 'node .'"
+    "start": "npm run build && node ."
   },
   "jest": {
     "testEnvironment": "node"
