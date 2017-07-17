@@ -55,8 +55,9 @@ const page = (req, res, next) => {
     <title>Tiny URL</title>
   </head>
   <body class="root">
-    <header class="panel header">
-      <h1><a href="/">Short-url</a></h1>
+    <header class="panel masthead">
+      <h1 class="home"><a href="/">Short url</a></h1>
+      <div class="splash">http://short.link/<span class="splash__text">is/so/much/better<span></div>
     </header>
     <section class="panel panel--light shrink">
       ${newLinkNode}

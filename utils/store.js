@@ -5,29 +5,29 @@ const shortlink = require('shortlink');
 
 let serverURL;
 
-// const users = {};
+const users = {};
 /*
  * example content
+ *
+ * const users = { '910fe088-e396-41bd-9713-315222f4466b':
+ *   [
+ *     '6741443617',
+ *     '7072623756',
+ *     '1883733561'
+ *   ]
+ * };
  */
-const users = { '910fe088-e396-41bd-9713-315222f4466b':
-   [ '6741443617',
-     '7072623756',
-     '1883733561',
-     '5713135205',
-     '1808339703' ]
-};
 
-// const urls = {};
+const urls = {};
 /*
  * example content
+ *
+ * const urls = {
+ *   '7meprz': 'https://www.2.se',
+ *   '7IE0wI': 'https://www.3.se',
+ *   '23tX9n': 'https://www.4.se'
+ * };
  */
-const urls = {
-  '7meprz': 'https://www.2.se',
-  '7IE0wI': 'https://www.3.se',
-  '23tX9n': 'https://www.4.se',
-  '6eDJs1': 'https://www.5.se',
-  '1YnBLp': 'https://www.6.se'
-};
 
 /**
  * Sets current server-url and desired alphabet
@@ -118,7 +118,7 @@ const set = (link, user) => {
 };
 
 /**
- * Add link-ref to user-object. Truncate it
+ * Add link-ref to user-object. Truncate object
  * if needed (FIFO), and if so, remove from urls.
  * @param {string} random - 10 digit random string
  * @param {string} user - session-uuid

@@ -12,8 +12,8 @@
   background-color: $color-white;
   border-radius: 2px 0 0 2px;
   border: 0;
-  flex: 1 0 0px;
-  font-size: 1.6rem;
+  flex: 1 0 auto;
+  font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.75;
   outline: 0;
@@ -32,12 +32,39 @@
 }
 
 .button--shrink {
+  font-size: 1.4rem;
   margin: 3px 3px 3px 0;
+}
+
+.button--shrink:hover {
+  animation: vibrate .3s linear;
+}
+
+@keyframes vibrate {
+  8%, 41% {
+   transform: rotate(-6deg);
+  }
+  25%, 58% {
+   transform: rotate(6deg);
+  }
+  75% {
+   transform: rotate(-2deg);
+  }
+  92% {
+   transform: rotate(2deg);
+  }
+  0%, 100% {
+   transform: rotate(0);
+  }
 }
 
 .button--copy {
   margin: 1px 1px 1px 0;
   border-radius: 0px 2px 2px 0;
+}
+
+.button--copy:hover > .icon--copy {
+  animation: vibrate .4s linear;
 }
 
 .button--ok {
@@ -49,4 +76,18 @@
   0% { background-color: green; }
   40% { background-color: green; }
   100% { background-color: $color-accent-dark; }
+}
+
+@media only screen and (min-width: 400px) {
+  .input--shrink,
+  .button--shrink {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .input--shrink,
+  .button--shrink {
+    font-size: 1.6rem;
+  }
 }

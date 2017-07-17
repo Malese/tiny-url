@@ -32,6 +32,7 @@
 .list-url__short {
   margin-top: 0.5rem;
   margin-bottom: -0.2rem;
+  font-size: 1.4rem;
   line-height: 1.4;
 }
 
@@ -43,4 +44,16 @@
 .area-light .list-url__long:link,
 .area-light .list-url__long:visited {
   color: $color-accent-dark;
+}
+
+@media only screen and (min-width: 400px) {
+  .list-url__short {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .list-url__short {
+    font-size: 1.6rem;
+  }
 }

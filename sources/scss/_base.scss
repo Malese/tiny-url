@@ -1,3 +1,5 @@
+/** General settings and layout */
+
 $color-white: #f0f0f0;
 $color-accent-light: #2197de;
 $color-accent-dark: #041c2b;
@@ -23,6 +25,11 @@ $color-accent-dark: #041c2b;
 
 .panel--light {
   background-color: $color-accent-light;
+  box-shadow: 0px 2px 15px rgba(0,0,0,0.5);
+}
+
+.masthead {
+  min-height: 8rem;
 }
 
 .shrink {
@@ -37,4 +44,11 @@ $color-accent-dark: #041c2b;
 
 .message {
   margin: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .shrink {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 }

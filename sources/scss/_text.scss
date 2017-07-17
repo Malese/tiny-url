@@ -16,41 +16,96 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-/** Links */
-a:link {
-  text-decoration: none;
-  color: $color-accent-light;
+/** Link home */
+.home {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4.8rem;
+  margin: 2px 0 0 2px;
+  padding: 0.5rem 0 0.4rem 0.6rem;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  text-indent: 1px;
+  text-transform: uppercase;
+  background-color: $color-white;
 }
 
+.home:first-line {
+  font-size: 1.1rem;
+}
+
+@-webkit-keyframes erase {
+  from {
+    width: 0;
+  }
+}
+
+/** Masthead text */
+.splash {
+  margin: 4em 0 1em;
+	font: bold 100% Consolas, Monaco, monospace;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+@media only screen and (min-width: 500px) {
+  .splash {
+    margin-top: 2em;
+    font-size: 150%;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .splash {
+    font-size: 200%;
+  }
+}
+
+.splash__text {
+	width: 13.36em;
+	width: 17ch;
+  display: inline-block;
+	animation: erase 2s steps(17, end) 1s reverse forwards;
+}
+
+/** Links on dark */
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+a:link,
 a:visited {
   color: $color-accent-light;
 }
 
-a:hover {
-  color: lighten($color-accent-light, 8%);
-}
-
+a:hover,
 a:active {
   color: lighten($color-accent-light, 8%);
 }
 
-.area-light a:link {
-  text-decoration: none;
-  color: darken($color-accent-light, 5%);
-}
-
+/** Links on light */
+.area-light a:link,
 .area-light a:visited {
   color: darken($color-accent-light, 5%);
 }
 
-.area-light a:hover {
-  color: darken($color-accent-light, 13%);
-}
-
+.area-light a:hover,
 .area-light a:active {
   color: darken($color-accent-light, 13%);
 }
 
+.home > a:link,
+.home > a:visited,
+.home > a:hover,
+.home > a:active {
+  color: $color-accent-dark;
+}
+
+/** Utils */
 .word--tight {
   word-spacing: 0.2em;
 }
@@ -61,4 +116,10 @@ a:active {
   border: 0;
   text-shadow: none;
   color: rgba(0, 0, 0, 0);
+}
+
+.icon--copy {
+  fill: $color-white;
+  width: 2rem;
+  height: 2rem;
 }

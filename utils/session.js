@@ -2,8 +2,6 @@
 
 const uuidv4 = require('uuid/v4');
 
-// TODO init that sets cookie name?
-
 let hostname = '127.0.0.1';
 let name = 'ident';
 
