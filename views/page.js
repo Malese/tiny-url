@@ -32,7 +32,7 @@ const page = (req, res, next) => {
       newLinkNode = partialShortend.render([newLink]);
       newLinkNode = newLinkNode ? `<p class="message">Here is your new short-link</p>${newLinkNode}` : '';
     } else {
-      newLinkNode = `<div class="message"><p>Opps, was that the correct link</p>${ESAPI.encoder().encodeForHTML(queryUrl)}</div>`;
+      newLinkNode = `<div class="message"><p>Opps, was that the correct link?</p><p>${ESAPI.encoder().encodeForHTML(queryUrl)}</p></div>`;
     }
   }
 
