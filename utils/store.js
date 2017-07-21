@@ -60,7 +60,8 @@ const resolve = (short) => {
  */
 const get = (user) => {
   if (!serverURL) {
-    console.log('INFO: No server-url set');
+    // Use proper err-handling instead
+    // console.log('INFO: No server-url set');
     return [];
   }
 
@@ -84,7 +85,8 @@ const get = (user) => {
  */
 const set = (link, user) => {
   if (!serverURL) {
-    console.log('INFO: No server-url set');
+    // Use proper err-handling instead
+    // console.log('INFO: No server-url set');
     return {};
   }
 

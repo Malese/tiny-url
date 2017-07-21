@@ -67,7 +67,7 @@ app.get('*', (req, res, next) => {
 });
 
 const server = app.listen(app.get('port'), app.get('hostname'), () => {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('running at http://' + host + ':' + port + ' (configurable in .env)');
+  const host = server.address().address || '[NOT SET]';
+  const port = server.address().port || '[NOT SET]';
+  console.log('running at http://' + host + ':' + port + ' (configurable in .env)'); // eslint-disable-line no-console
 });

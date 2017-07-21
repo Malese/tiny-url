@@ -18,7 +18,7 @@ const page = (req, res, next) => {
   if (req.query && req.query.url) {
     const queryUrl = req.query.url.trim();
 
-    // check is validity link
+    // check is valid link
     const isBadUrl = validate({website: queryUrl}, {
       website: {
         url: {
